@@ -38,16 +38,31 @@ describe('validator module', () => {
       expect(validator.isArray(bool)).toBeFalsy();
     });
 
-    it.skip('objects', () => {
-      
+    it('objects', () => {
+      expect(validator.isObj(str)).toBeFalsy();
+      expect(validator.isObj(num)).toBeFalsy();
+      expect(validator.isObj(arr)).toBeFalsy();
+      expect(validator.isObj(obj)).toBeTruthy();
+      expect(validator.isObj(func)).toBeFalsy();
+      expect(validator.isObj(bool)).toBeFalsy();
     });
 
-    it.skip('booleans', () => {
-      
+    it('booleans', () => {
+      expect(validator.isBoolean(str)).toBeFalsy();
+      expect(validator.isBoolean(num)).toBeFalsy();
+      expect(validator.isBoolean(arr)).toBeFalsy();
+      expect(validator.isBoolean(obj)).toBeFalsy();
+      expect(validator.isBoolean(func)).toBeFalsy();
+      expect(validator.isBoolean(bool)).toBeTruthy();
     });
 
-    it.skip('functions', () => {
-      
+    it('functions', () => {
+      expect(validator.isFunction(str)).toBeFalsy();
+      expect(validator.isFunction(num)).toBeFalsy();
+      expect(validator.isFunction(arr)).toBeFalsy();
+      expect(validator.isFunction(obj)).toBeFalsy();
+      expect(validator.isFunction(func)).toBeTruthy();
+      expect(validator.isFunction(bool)).toBeFalsy();
     });
   });
 
