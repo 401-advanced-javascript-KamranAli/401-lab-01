@@ -1,12 +1,12 @@
 const validator = require('../lib/validator.js');
 
 describe('validator module', () => {
-  
+
   const str = 'yes';
   const num = 1;
   const arr = ['a'];
   const obj = { x: 'y' };
-  const func = () => {};
+  const func = () => { };
   const bool = false;
 
   describe('performs basic validation of', () => {
@@ -108,7 +108,7 @@ describe('validator module', () => {
       // TODO: pass getValidator the rules
       expect(validator.getValidator('string')).toBe(validator.isString);
     });
-    
+
     it('numbers', () => {
       expect(validator.getValidator('number')).toBe(validator.isNumber);
     });
@@ -145,5 +145,21 @@ describe('validator module', () => {
       expect(validator.getValidator('booleans')).toBe(validator.isArrayOfBooleans);
     });
 
+  });
+
+
+});
+describe('get new validator for', () => {
+
+  const str = '1';
+  const num = 1;
+  const bool = false;
+
+  it('casting', () => {
+    expect(validator.castString(str)).toBe('1');
+  });
+
+  it('casting number', () => {
+    expect(validator.castNumber(num)).toBe(1);
   });
 });
