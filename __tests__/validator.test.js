@@ -149,17 +149,28 @@ describe('validator module', () => {
 
 
 });
+
 describe('get new validator for', () => {
 
   const str = '1';
   const num = 1;
-  const bool = false;
+  const bool = true;
+  const date = new Date();
 
-  it('casting', () => {
+  it('casting string', () => {
     expect(validator.castString(str)).toBe('1');
   });
 
   it('casting number', () => {
     expect(validator.castNumber(num)).toBe(1);
   });
+
+  it('casting bool', () => {
+    expect(validator.castBool(bool)).toBe(true);
+  });
+
+  it('casting date', () => {
+    expect(validator.castDate(date)).toBe();
+  });
+
 });
