@@ -7,7 +7,7 @@
 
 ### Links and Resources
 * [submission PR](https://github.com/kgali21/401-lab-01/pull/1)
-* [travis](https://travis-ci.com/kgali21/401-lab-01/builds/128191488)
+* [travis](https://travis-ci.com/401-advanced-javascript-KamranAli/401-lab-01/builds/128578409)
 
 #### Documentation
 * (Server assignments)
