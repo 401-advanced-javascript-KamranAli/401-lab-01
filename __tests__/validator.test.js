@@ -167,8 +167,14 @@ describe('get new validator for', () => {
 
   it('casting string', () => {
     expect(validator.castString(str)).toBe('1');
+    expect(validator.castString(num)).toBe('1');
+    expect(validator.castString(boolTrue)).toBe('true');
+    expect(validator.castString(String(new Date())));
     expect(() => {
       validator.castString(obj);
+    }).toThrow(validator.CoerceError);
+    expect(() => {
+      validator.castString(arr);
     }).toThrow(validator.CoerceError);
   });
 

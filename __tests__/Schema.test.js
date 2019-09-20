@@ -1,4 +1,6 @@
 const Schema = require('../lib/Schema');
+const errors = require('../lib/Errors');
+const validator = require('../lib/validator');
 
 describe('Schema', () => {
 
@@ -8,7 +10,7 @@ describe('Schema', () => {
       type: String,
       required: true,
     },
-    isBandMemeber: {
+    isBandMember: {
       type: Boolean,
       required: false
     },
@@ -26,29 +28,65 @@ describe('Schema', () => {
     };
 
     const record = schema.validate(queenModel);
+    
     expect(record).toEqual(queenModel);
   });
-  
-  it('throws on invalid model', () => {
+
+  it('throws an invalid model', () => {
     const queenModel = {
       name: 32,
       bandMember: 'Freddie Mercury',
       yearsActive: true
     };
 
-    const record = schema.validate(queenModel);
+  // more test cases...
+
+    const record = () => schema.validate(queenModel);
     expect(record).not.toEqual(queenModel);
   });
 
   it('omits empty fields', () => {
     const queenModel = {
-      name: 'Freddie Mercury'
+      name: 'Freddie Mercury',
+      yearsActive: 32
     };
 
     const record = schema.validate(queenModel);
 
-    expect(Object.keys(record.length)).toBe(1);
+    expect(Object.keys(record).length).toBe(2);
     expect(record).toEqual(queenModel);
   });
-  // more test cases...
+
+  it('coerces model types', () => {
+    const queenModel = {
+      name: 'Freddie Mercury',
+      yearsActive: '32'
+    };
+
+    const record = schema.validate(queenModel);
+
+    expect(record).toEqual({
+      name: 'Freddie Mercury',
+      yearsActive: '32'
+    });
+  });
+
+  it(`if fields missing, throws model error`, () => {
+    const model = {};
+
+    expect(() => {
+      schema.validate(model);
+    }).toThrow(errors.ModelError);
+  });
+
+  it(`throws model error on uncastable`, () => {
+    const model = {
+      name: 'Freddie Mercury',
+      yearsActive: 'xyz'
+    };
+
+    expect(() => {
+      schema.validate(model);
+    }).toThrow(validator.CoerceError);
+  });
 });
