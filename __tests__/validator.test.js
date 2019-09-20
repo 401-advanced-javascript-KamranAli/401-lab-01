@@ -161,7 +161,7 @@ describe('get new validator for', () => {
   const numFalse = 0;
   const boolTrue = true;
   const boolFalse = false;
-  const date = new Date();
+  const date = new Date(1568937663000);
   const obj = {};
   const arr = [];
 
@@ -199,11 +199,25 @@ describe('get new validator for', () => {
     expect(() => {
       validator.castBool(date);
     }).toThrow(validator.CoerceError);
-    
+
   });
 
   it('casting date', () => {
-    expect(validator.castDate(date)).toBe(String(new Date()));
+    expect(validator.castDate(date)).toBe(date);
+    expect(() => {
+      validator.castDate(boolTrue);
+    }).toThrow(validator.CoerceError);
+    expect(() => {
+      validator.castDate(num);
+    }).toThrow(validator.CoerceError);
+    expect(() => {
+      validator.castDate(obj);
+    }).toThrow(validator.CoerceError);
+    expect(() => {
+      validator.castDate(str);
+    }).toThrow(validator.CoerceError);
+    expect(() => {
+      validator.castDate(arr);
+    }).toThrow(validator.CoerceError);
   });
-
 });
