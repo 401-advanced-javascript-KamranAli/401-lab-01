@@ -14,58 +14,58 @@ const { readFile, writeFile, readdir } = require('../lib/files');
 describe('Document Collection', () => {
   // TODO
   it('Saves object to file', () => {
-    const sample = {
-      key: 'value',
-      sick: true
+    const queen = {
+      name: 'Freddie',
+      bandMate: true
     };
 
-    const writePromise = Promise.resolve(sample);
+    const writePromise = Promise.resolve(queen);
     writeFile.mockReturnValueOnce(writePromise);
 
     const dir = 'documents';
     const docs = new DocumentCollection(dir);
 
-    return docs.save(sample)
+    return docs.save(queen)
       .then(object => {
         expect(path.dirname(writeFile.mock.calls[0][0])).toBe(dir);
-        expect(writeFile.mock.calls[0][1]).toBe(JSON.stringify(sample));
+        expect(writeFile.mock.calls[0][1]).toBe(JSON.stringify(queen));
         expect(object._id).toEqual(expect.any(String));
       });
   });
 
   it('read object file', () => {
-    const sample = {
-      key: 'value',
-      sick: true,
-      _id: 'banana'
+    const queen = {
+      name: 'Freddie',
+      bandMate: true,
+      _id: 'frontman'
     };
 
-    const readPromise = Promise.resolve(JSON.stringify(sample));
+    const readPromise = Promise.resolve(JSON.stringify(queen));
     readFile.mockReturnValueOnce(readPromise);
 
     const dir = 'documents';
     const documents = new DocumentCollection(dir);
 
-    const id = sample._id;
+    const id = queen._id;
 
     return documents.get(id)
       .then(object => {
         expect(readFile.mock.calls[0][0]).toBe(`${dir}/${id}.json`);
-        expect(object._id).toBe('banana');
+        expect(object._id).toBe('frontman');
       });
   });
 
   it('read all objects from directory', () => {
-    const sample = {
-      key: 'value',
-      sick: true,
-      _id: 'banana'
+    const queen = {
+      name: 'Freddie',
+      bandMate: true,
+      _id: 'frontman'
     };
 
-    const readDirPromise = Promise.resolve(['banana.json']);
+    const readDirPromise = Promise.resolve(['frontman.json']);
     readdir.mockReturnValueOnce(readDirPromise);
 
-    const readPromise = Promise.resolve(JSON.stringify(sample));
+    const readPromise = Promise.resolve(JSON.stringify(queen));
     readFile.mockReturnValueOnce(readPromise);
 
     const dir = 'documents';
@@ -74,8 +74,8 @@ describe('Document Collection', () => {
     return documents.getAll()
       .then(array => {
         expect(readdir.mock.calls[0][0]).toBe(dir);
-        expect(readFile.mock.calls[0][0]).toBe(`${dir}/${sample._id}.json`);
-        expect(array[0]._id).toBe(sample._id);
+        expect(readFile.mock.calls[0][0]).toBe(`${dir}/${queen._id}.json`);
+        expect(array[0]._id).toBe(queen._id);
       });
   });
 });
