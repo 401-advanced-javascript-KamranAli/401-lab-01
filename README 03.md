@@ -1,13 +1,13 @@
-# LAB - 02
+# LAB - 03
 
-## Project Classes, Errors, Type Coercion
+## Project ASYNC
 
 ### Author: Kamran Ali
 
 
 ### Links and Resources
-* [submission PR](https://github.com/kgali21/401-lab-01/pull/1)
-* [travis](https://travis-ci.com/401-advanced-javascript-KamranAli/401-lab-01/builds/128578409)
+* [submission PR](https://github.com/401-advanced-javascript-KamranAli/401-lab-01/pull/2)
+* [travis](https://travis-ci.com/401-advanced-javascript-KamranAli/401-lab-01/builds/128624661)
 
 #### Documentation
 * (Server assignments)
