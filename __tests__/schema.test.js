@@ -1,4 +1,4 @@
-const Schema = require('../lib/Schema');
+const Schema = require('../lib/schema');
 const errors = require('../lib/Errors');
 const validator = require('../lib/validator');
 
