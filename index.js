@@ -39,7 +39,7 @@ const beatlesModel = {
 Database.connect('test-db')
   .then(() => {
 
-    const Schema = require('./lib/schema');
+    const Schema = require('./lib/schemaOnHold');
     const queenInstance = new Model(Schema.queenSchemaConfig.schema)
       .then(obj => {
         console.log('create', obj);
