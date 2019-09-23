@@ -1,13 +1,13 @@
-# LAB - 01
+# LAB - 02
 
-## Project TDD Testing with Jest
+## Project Classes, Errors, Type Coercion
 
 ### Author: Kamran Ali
 
 
 ### Links and Resources
 * [submission PR](https://github.com/kgali21/401-lab-01/pull/1)
-* [travis](https://travis-ci.com/401-advanced-javascript-KamranAli/lab-00/builds/127880928)
+* [travis](https://travis-ci.com/401-advanced-javascript-KamranAli/401-lab-01/builds/128578409)
 
 #### Documentation
 * (Server assignments)
@@ -15,10 +15,6 @@
 ### Modules
 #### `pos.js`
 ##### Exported Values and Methods
-
-###### `const isString = input => {return typeof input === 'string';};`
-return true/false to indicate that the tests work
-
 
 ### Setup
 #### `.env` requirements
