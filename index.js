@@ -24,6 +24,17 @@ Documents.getAll()
   .then(obj => {
     console.log('getAll', obj);
   });
+// for lab 4
+
+const queenModel = {
+  name: 'Freddie Mercury',
+  yearsActive: 32
+};
+
+const beatlesModel = {
+  name: 'John Lennon',
+  yearsActive: 19
+};
 
 Database.connect('test-db')
   .then(() => {
@@ -32,16 +43,31 @@ Database.connect('test-db')
     const queenInstance = new Model(Schema.queenSchemaConfig.schema)
       .then(obj => {
         console.log('create', obj);
-        queenInstance.create(queen);
+        queenInstance.create(queenModel);
       })
       .then(obj => {
         console.log('findById', obj);
-        queenInstance.findById(queen.id);
+        queenInstance.findById(queenModel.id);
       })
       .then(obj => {
         console.log('find all', obj);
         queenInstance.find();
       });
 
+    const beatlesInstance = new Model(Schema.beatlesSchemaConfig.schema)
+      .then(obj => {
+        console.log('create', obj);
+        beatlesInstance.create(beatlesModel);
+      })
+      .then(obj => {
+        console.log('findById', obj);
+        beatlesInstance.findById(beatlesModel.id);
+      })
+      .then(obj => {
+        console.log('find all', obj);
+        beatlesInstance.find();
+      });
 
-  });
+
+  })
+  .then(() => Database.close());
