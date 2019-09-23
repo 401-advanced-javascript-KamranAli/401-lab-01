@@ -1,12 +1,12 @@
 const validator = require('../lib/validator.js');
 
 describe('validator module', () => {
-  
+
   const str = 'yes';
   const num = 1;
   const arr = ['a'];
   const obj = { x: 'y' };
-  const func = () => {};
+  const func = () => { };
   const bool = false;
 
   describe('performs basic validation of', () => {
@@ -108,7 +108,7 @@ describe('validator module', () => {
       // TODO: pass getValidator the rules
       expect(validator.getValidator('string')).toBe(validator.isString);
     });
-    
+
     it('numbers', () => {
       expect(validator.getValidator('number')).toBe(validator.isNumber);
     });
@@ -146,4 +146,84 @@ describe('validator module', () => {
     });
 
   });
+
+
+});
+
+describe('get new validator for', () => {
+
+  const str = '1';
+  const strNum = '1';
+  const strTrue = 'true';
+  const strFalse = 'false';
+  const num = 1;
+  const numTrue = 1;
+  const numFalse = 0;
+  const boolTrue = true;
+  const boolFalse = false;
+  const date = new Date(1568937663000);
+  const obj = {};
+  const arr = [];
+
+  it('casting string', () => {
+    expect(validator.castString(str)).toBe('1');
+    expect(validator.castString(num)).toBe('1');
+    expect(validator.castString(boolTrue)).toBe('true');
+    expect(validator.castString(String(new Date())));
+    expect(() => {
+      validator.castString(obj);
+    }).toThrow(validator.CoerceError);
+    expect(() => {
+      validator.castString(arr);
+    }).toThrow(validator.CoerceError);
+  });
+
+  it('casting number', () => {
+    expect(validator.castNumber(num)).toBe(1);
+    expect(validator.castNumber(strNum)).toBe(1);
+    expect(() => {
+      validator.castNumber(obj);
+    }).toThrow(validator.CoerceError);
+  });
+
+  it('casting bool', () => {
+    expect(validator.castBool(boolTrue)).toBe(true);
+    expect(validator.castBool(boolFalse)).toBe(false);
+    expect(validator.castBool(numTrue)).toBe(true);
+    expect(validator.castBool(numFalse)).toBe(false);
+    expect(validator.castBool(strTrue)).toBe(true);
+    expect(validator.castBool(strFalse)).toBe(false);
+    expect(() => {
+      validator.castBool(obj);
+    }).toThrow(validator.CoerceError);
+    expect(() => {
+      validator.castBool(str);
+    }).toThrow(validator.CoerceError);
+    expect(() => {
+      validator.castBool(arr);
+    }).toThrow(validator.CoerceError);
+    expect(() => {
+      validator.castBool(date);
+    }).toThrow(validator.CoerceError);
+
+  });
+
+  // it('casting date', () => {
+  //   expect(validator.castDate(date)).toBe(date);
+  //   expect(() => {
+  //     validator.castDate(boolTrue);
+  //   }).toThrow(validator.CoerceError);
+  //   expect(() => {
+  //     validator.castDate(num);
+  //   }).toThrow(validator.CoerceError);
+  //   expect(() => {
+  //     validator.castDate(obj);
+  //   }).toThrow(validator.CoerceError);
+  //   expect(() => {
+  //     validator.castDate(str);
+  //   }).toThrow(validator.CoerceError);
+  //   expect(() => {
+  //     validator.castDate(arr);
+  //   }).toThrow(validator.CoerceError);
+  // });
 });
